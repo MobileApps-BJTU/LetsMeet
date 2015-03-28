@@ -1,0 +1,17 @@
+<resources>
+    <string name="app_name">LetsMeet</string>
+
+    <string name="action_settings">Settings</string>
+    <string name="hotButton">HOT</string>
+    <string name="newButton">NEW</string>
+    <string name="nearbyButton">NearBy</string>
+    <string name="MEButton">ME</string>
+    <string name="createButton">create</string>
+    <string name="SettingButton">Settings</string>
+
+    <string name="ActivityName">Activity Name:</string>
+    <string name="ActivityDate">Date:</string>
+    <string name="ActivityLocation">Location:</string>
+    <string name="ActivityPeople">Number:</string>
+    <string name="ActivityType">Type:</string>
+</resources>
