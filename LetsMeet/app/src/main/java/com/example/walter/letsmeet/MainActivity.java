@@ -1,6 +1,7 @@
 package com.example.walter.letsmeet;
 
 import android.content.SharedPreferences;
+import android.net.Uri;
 import android.support.v7.app.ActionBarActivity;
 import android.os.Bundle;
 import android.view.Menu;
@@ -13,7 +14,8 @@ import java.util.Map;
 import java.util.Objects;
 
 
-public class MainActivity extends ActionBarActivity implements MainFragment.OnFragmentInteractionListener{
+public class MainActivity extends ActionBarActivity implements MainFragment.OnFragmentInteractionListener,
+        CreateActivityFragment.OnFragmentInteractionListener{
 
     private static final String ACTIVITY = "activity";
     private static final String NAME = "name";
@@ -136,7 +138,7 @@ public class MainActivity extends ActionBarActivity implements MainFragment.OnFr
     @Override
     public void onClickCreateButton() {
         getFragmentManager().beginTransaction()
-                .replace(R.id.fragment_holder,new BlankFragment())
+                .replace(R.id.fragment_holder,new CreateActivityFragment())
                 .addToBackStack(null)
                 .commit();
     }
@@ -154,5 +156,10 @@ public class MainActivity extends ActionBarActivity implements MainFragment.OnFr
         }else{
             super.onBackPressed();
         }
+    }
+
+    @Override
+    public void onFragmentInteraction(Uri uri) {
+
     }
 }
