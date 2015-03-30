@@ -9,7 +9,7 @@
     <TextView android:layout_width="match_parent"
         android:layout_height="70dp"
         android:background="#909"
-        android:text="Create an Activity"
+        android:text="@string/header_create_activity"
         android:gravity="center"
         android:textSize="35dp"/>
 
@@ -35,7 +35,7 @@
             android:layout_column="0"
             android:layout_gravity="right"
             android:id = "@+id/edit_name"
-            android:hint="Please Enter the topic "/>
+            android:hint="@string/hint_enter_name"/>
 
         <TextView
             android:layout_width="wrap_content"
@@ -51,7 +51,7 @@
             android:layout_column="1"
             android:layout_columnSpan="2"
             android:id = "@+id/edit_location"
-            android:hint="Enter the exact location"/>
+            android:hint="@string/hint_enter_location"/>
 
         <TextView
             android:layout_width="wrap_content"
@@ -67,7 +67,7 @@
             android:layout_column="1"
             android:layout_columnSpan="2"
             android:id = "@+id/edit_date"
-            android:hint="Occurring Date"/>
+            android:hint="@string/hint_enter_date"/>
 
         <TextView
             android:layout_width="wrap_content"
@@ -83,7 +83,7 @@
             android:layout_column="1"
             android:layout_columnSpan="2"
             android:id = "@+id/edit_number"
-            android:hint="Number of participators"/>
+            android:hint="@string/hint_enter_number"/>
 
     </GridLayout>
     <RelativeLayout
