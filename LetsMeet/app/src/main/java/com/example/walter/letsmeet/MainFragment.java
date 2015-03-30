@@ -33,6 +33,7 @@ public class MainFragment extends ListFragment {
         // Required empty public constructor
     }
     public MainFragment(ArrayList<Map<String,Object>> information){
+
         allInformation = information;
     }
 
