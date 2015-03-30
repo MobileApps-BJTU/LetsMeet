@@ -32,20 +32,14 @@ public class MainActivity extends ActionBarActivity implements MainFragment.OnFr
     
     private CreateActivityFragment createActivityFragment;
     private MainFragment mainFragment;
-    private EditText activityNameText;
-    private EditText activityLocationText;
-    private EditText activityDateText;
-    private EditText activityNumberText;
+
     
     @Override
     protected void onCreate(Bundle savedInstanceState) {
         super.onCreate(savedInstanceState);
         setContentView(R.layout.activity_main);
 
-        activityNameText = (EditText) findViewById(R.id.edit_name);
-        activityDateText = (EditText) findViewById(R.id.edit_date);
-        activityLocationText = (EditText) findViewById(R.id.edit_location);
-        activityNumberText = (EditText) findViewById(R.id.edit_number);
+
         createActivityFragment = new CreateActivityFragment();
         mainFragment = new MainFragment();
 
@@ -129,7 +123,8 @@ public class MainActivity extends ActionBarActivity implements MainFragment.OnFr
         }
 
     }
-    public void setActivityData(){
+    public void setActivityData(EditText activityNameText,EditText activityLocationText,
+                                EditText activityDateText,EditText activityNumberText){
 
         String nameString = activityNameText.getText().toString();
         String dateString = activityDateText.getText().toString();
@@ -137,22 +132,7 @@ public class MainActivity extends ActionBarActivity implements MainFragment.OnFr
         int numberString = Integer.valueOf(activityDateText.getText().toString());
 
         int temp = 1;
-        if(activityNameText.getText().toString().length() <= 0){
-            AlertDialog.Builder builder =
-                    new AlertDialog.Builder(MainActivity.this);
 
-            // set dialog's message to display
-            builder.setMessage(R.string.missingMessage);
-
-            // provide an OK button that simply dismisses the dialog
-            builder.setPositiveButton(R.string.OK, null);
-
-            // create AlertDialog from the AlertDialog.Builder
-            AlertDialog errorDialog = builder.create();
-            errorDialog.show(); // display the modal dialog
-        }
-
-        else {
             if (activityNames.containsValue(nameString)) {
                 Toast.makeText(this, "活动名称已经存在", Toast.LENGTH_LONG).show();
             } else {
@@ -178,7 +158,7 @@ public class MainActivity extends ActionBarActivity implements MainFragment.OnFr
                     Toast.makeText(this, "数据写入失败", Toast.LENGTH_LONG).show();
                 }
             }
-        }
+
 
     }
 
@@ -213,17 +193,38 @@ public class MainActivity extends ActionBarActivity implements MainFragment.OnFr
     }
     
     @Override
- public void onClickLetsMeetButton(){
+ public void onClickLetsMeetButton(EditText activityNameText,EditText activityLocationText,
+                                   EditText activityDateText,EditText activityNumberText){
 
-         setActivityData();
-        getFragmentManager().beginTransaction()
-                .replace(R.id.fragment_holder,new BlankFragment()).addToBackStack(null)
-                .commit();
+        if(activityNameText.getText().toString().length() <= 0){
+            AlertDialog.Builder builder =
+                    new AlertDialog.Builder(MainActivity.this);
 
+            // set dialog's message to display
+            builder.setMessage(R.string.missingMessage);
+
+            // provide an OK button that simply dismisses the dialog
+            builder.setPositiveButton(R.string.OK, null);
+
+            // create AlertDialog from the AlertDialog.Builder
+            AlertDialog errorDialog = builder.create();
+            errorDialog.show(); // display the modal dialog
+        }
+        else {
+            setActivityData(activityNameText, activityLocationText,
+                    activityDateText, activityNumberText);
+            getFragmentManager().beginTransaction()
+                    .replace(R.id.fragment_holder, new BlankFragment()).addToBackStack(null)
+                    .commit();
+        }
    }
     public void onClickCancelCreateActivity(){
 
-
+        if(getFragmentManager().getBackStackEntryCount() > 0){
+            getFragmentManager().popBackStack();
+        }else{
+            super.onBackPressed();
+        }
     }
 
     @Override
