@@ -29,20 +29,12 @@ public class MainActivity extends ActionBarActivity implements MainFragment.OnFr
     private SharedPreferences.Editor editor;
     private ArrayList<String> activities;
     private Map<String,String> activityNames;
-    
-    private CreateActivityFragment createActivityFragment;
-    private MainFragment mainFragment;
 
     
     @Override
     protected void onCreate(Bundle savedInstanceState) {
         super.onCreate(savedInstanceState);
         setContentView(R.layout.activity_main);
-
-
-        createActivityFragment = new CreateActivityFragment();
-        mainFragment = new MainFragment();
-
 
         savedActivities = getSharedPreferences(ACTIVITY,MODE_PRIVATE);
 
@@ -181,13 +173,13 @@ public class MainActivity extends ActionBarActivity implements MainFragment.OnFr
     @Override
     public void onClickCreateButton() {
         getFragmentManager().beginTransaction()
-                .replace(R.id.fragment_holder, createActivityFragment)
+                .replace(R.id.fragment_holder, new CreateActivityFragment())
                 .addToBackStack(null)
                 .commit();
     }
     
     @Override
- public void onClickLetsMeetButton(String name,String date,String location,int number){
+ public void onClickLetsMeetButton(String name,String date,String location,String number){
 
         if(name.length() <= 0){
             AlertDialog.Builder builder =
@@ -204,11 +196,12 @@ public class MainActivity extends ActionBarActivity implements MainFragment.OnFr
             errorDialog.show(); // display the modal dialog
         }
         else {
-            setActivityData(name, date,location, number);
+
+            setActivityData(name, date,location,Integer.valueOf(number));
             getFragmentManager().beginTransaction()
                     .replace(R.id.fragment_holder, new MainFragment(getData()))
                     .addToBackStack(null)
-                    .commit();
+            .commit();
         }
    }
     public void onClickCancelCreateActivity(){

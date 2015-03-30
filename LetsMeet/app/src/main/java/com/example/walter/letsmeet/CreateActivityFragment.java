@@ -73,8 +73,8 @@ public class CreateActivityFragment extends Fragment {
 
             String name = activityNameText.getText().toString();
             String date = activityDateText.getText().toString();
-            String location = activityDateText.getText().toString();
-            int number = Integer.valueOf(activityNumberText.getText().toString());
+            String location = activityLocationText.getText().toString();
+            String number = activityNumberText.getText().toString();
 
             if (mListener!=null){
                 mListener.onClickLetsMeetButton(name,date,location,number);
@@ -103,7 +103,7 @@ public class CreateActivityFragment extends Fragment {
      */
     public interface OnFragmentInteractionListener {
         // TODO: Update argument type and name
-        public void onClickLetsMeetButton(String name,String date,String location,int number);
+        public void onClickLetsMeetButton(String name,String date,String location,String number);
         public void onClickCancelCreateActivity();
 
     }
