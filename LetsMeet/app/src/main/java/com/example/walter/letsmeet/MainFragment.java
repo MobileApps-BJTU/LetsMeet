@@ -12,6 +12,7 @@ import android.view.ViewGroup;
 import android.widget.Button;
 import android.widget.ListView;
 import android.widget.SimpleAdapter;
+import android.widget.TextView;
 
 import java.util.ArrayList;
 import java.util.Map;
@@ -28,6 +29,7 @@ public class MainFragment extends ListFragment {
     private OnFragmentInteractionListener mListener;
     private SimpleAdapter mAdapter;
     private ArrayList<Map<String,Object>> allInformation;
+    private TextView nameTextView;
 
     public MainFragment() {
         // Required empty public constructor
@@ -49,6 +51,7 @@ public class MainFragment extends ListFragment {
                 new int[]{R.id.actiNameTextView,R.id.actiLocatTextView,R.id.actiDateTextView,R.id.actiPeopleTextView,R.id.actiTypeTextView });
 
         setListAdapter(mAdapter);
+
         Button createButton = (Button)myView.findViewById(R.id.CreateButton);
         createButton.setOnClickListener(createButtonListener);
         // Inflate the layout for this fragment
@@ -59,8 +62,10 @@ public class MainFragment extends ListFragment {
     // TODO: Rename method, update argument and hook method into UI event
     public void onListItemClick(ListView l,View v,int position,long id) {
 
+        nameTextView = (TextView)v.findViewById(R.id.actiNameTextView);
+        String str = nameTextView.getText().toString();
         if (mListener != null) {
-            mListener.clickListItem();
+            mListener.clickListItem(str);
         }
     }
 
@@ -103,7 +108,7 @@ public class MainFragment extends ListFragment {
     public interface OnFragmentInteractionListener {
         // TODO: Update argument type and name
         public void onClickCreateButton();
-        public void clickListItem();
+        public void clickListItem(String str);
     }
 
 }

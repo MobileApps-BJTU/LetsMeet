@@ -42,21 +42,16 @@ public class CreateActivityFragment extends Fragment {
         activityLocationText = (EditText) myView.findViewById(R.id.edit_location);
         activityNumberText = (EditText) myView.findViewById(R.id.edit_number);
 
-
         Button letsMeet = (Button)myView.findViewById(R.id.button_create);
         letsMeet.setOnClickListener(letsMeetButtonListener);
+        Button cancel = (Button)myView.findViewById(R.id.button_cancel);
+        cancel.setOnClickListener(cancelButtonListener);
+
         return myView;
     }
 
-    // TODO: Rename method, update argument and hook method into UI event
-    public void onButtonPressed(Uri uri) {
-        if (mListener != null) {
-            mListener.onFragmentInteraction(uri);
-        }
-    }
-
     @Override
-    public void onAttach(Activity activity) {
+         public void onAttach(Activity activity) {
         super.onAttach(activity);
         try {
             mListener = (OnFragmentInteractionListener) activity;
@@ -75,9 +70,24 @@ public class CreateActivityFragment extends Fragment {
     public View.OnClickListener letsMeetButtonListener = new View.OnClickListener() {
         @Override
         public void onClick(View v) {
+
+            String name = activityNameText.getText().toString();
+            String date = activityDateText.getText().toString();
+            String location = activityDateText.getText().toString();
+            int number = Integer.valueOf(activityNumberText.getText().toString());
+
             if (mListener!=null){
-                mListener.onClickLetsMeetButton(activityNameText,activityLocationText,
-                        activityDateText,activityNumberText);
+                mListener.onClickLetsMeetButton(name,date,location,number);
+            }
+        }
+    };
+
+    public View.OnClickListener cancelButtonListener = new View.OnClickListener(){
+
+        @Override
+        public void onClick(View v) {
+            if (mListener!=null){
+                mListener.onClickCancelCreateActivity();
             }
         }
     };
@@ -93,12 +103,8 @@ public class CreateActivityFragment extends Fragment {
      */
     public interface OnFragmentInteractionListener {
         // TODO: Update argument type and name
-        public void onFragmentInteraction(Uri uri);
-        public void onClickLetsMeetButton(EditText activityNameText,EditText activityLocationText,
-                                          EditText activityDateText,EditText activityNumberText);
+        public void onClickLetsMeetButton(String name,String date,String location,int number);
         public void onClickCancelCreateActivity();
-      public void setActivityData(EditText activityNameText,EditText activityLocationText,
-                                  EditText activityDateText,EditText activityNumberText);
 
     }
 

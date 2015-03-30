@@ -123,33 +123,27 @@ public class MainActivity extends ActionBarActivity implements MainFragment.OnFr
         }
 
     }
-    public void setActivityData(EditText activityNameText,EditText activityLocationText,
-                                EditText activityDateText,EditText activityNumberText){
-
-        String nameString = activityNameText.getText().toString();
-        String dateString = activityDateText.getText().toString();
-        String locationString = activityDateText.getText().toString();
-        int numberString = Integer.valueOf(activityDateText.getText().toString());
+    public void setActivityData(String name,String date,String location,int number){
 
         int temp = 1;
 
-            if (activityNames.containsValue(nameString)) {
+            if (activityNames.containsValue(name)) {
                 Toast.makeText(this, "活动名称已经存在", Toast.LENGTH_LONG).show();
             } else {
                 while (activities.contains("acti_" + String.valueOf(temp))) {
                     temp++;
                 }
                 editor = savedActivities.edit();
-                editor.putString("acti_" + String.valueOf(temp), nameString);
+                editor.putString("acti_" + String.valueOf(temp), name);
                 editor.commit();
                 activities.add("acti_" + String.valueOf(temp));
-                activityNames.put("acti_" + String.valueOf(temp), nameString);
+                activityNames.put("acti_" + String.valueOf(temp), name);
                 savedAnActivity = getSharedPreferences("acti_" + String.valueOf(temp), MODE_PRIVATE);
                 editor = savedAnActivity.edit();
-                editor.putString(NAME, nameString);
-                editor.putString(LOCATION, locationString);
-                editor.putString(DATE, dateString);
-                editor.putInt(NUMBER, numberString);
+                editor.putString(NAME, name);
+                editor.putString(LOCATION, location);
+                editor.putString(DATE, date);
+                editor.putInt(NUMBER, number);
                 editor.putInt(TYPE, 1);
 
                 if (editor.commit()) {
@@ -193,10 +187,9 @@ public class MainActivity extends ActionBarActivity implements MainFragment.OnFr
     }
     
     @Override
- public void onClickLetsMeetButton(EditText activityNameText,EditText activityLocationText,
-                                   EditText activityDateText,EditText activityNumberText){
+ public void onClickLetsMeetButton(String name,String date,String location,int number){
 
-        if(activityNameText.getText().toString().length() <= 0){
+        if(name.length() <= 0){
             AlertDialog.Builder builder =
                     new AlertDialog.Builder(MainActivity.this);
 
@@ -211,25 +204,48 @@ public class MainActivity extends ActionBarActivity implements MainFragment.OnFr
             errorDialog.show(); // display the modal dialog
         }
         else {
-            setActivityData(activityNameText, activityLocationText,
-                    activityDateText, activityNumberText);
+            setActivityData(name, date,location, number);
             getFragmentManager().beginTransaction()
-                    .replace(R.id.fragment_holder, new BlankFragment()).addToBackStack(null)
+                    .replace(R.id.fragment_holder, new MainFragment(getData()))
+                    .addToBackStack(null)
                     .commit();
         }
    }
     public void onClickCancelCreateActivity(){
-
-        if(getFragmentManager().getBackStackEntryCount() > 0){
-            getFragmentManager().popBackStack();
-        }else{
-            super.onBackPressed();
-        }
+        onBackPressed();
     }
 
     @Override
-    public void clickListItem() {
+    public void clickListItem(String str) {
 
+        String key = "";
+        for (String s:activities){
+            if (activityNames.get(s).equals(str)){
+                key = s;
+            }
+        }
+        savedAnActivity = getSharedPreferences(key,MODE_PRIVATE);
+
+        int type = savedAnActivity.getInt(TYPE,5);
+
+        if (type == 5){
+            Toast.makeText(this,"活动种类未知",Toast.LENGTH_LONG).show();
+        }else if (type == 0){
+            getFragmentManager().beginTransaction()
+                    .replace(R.id.fragment_holder,new BlankFragment())
+                    .addToBackStack(null)
+                    .commit();
+        }else if (type == 1){
+            getFragmentManager().beginTransaction()
+                    .replace(R.id.fragment_holder,new BlankFragment())
+                    .addToBackStack(null)
+                    .commit();
+        }else if (type == 2){
+            getFragmentManager().beginTransaction()
+                    .replace(R.id.fragment_holder,new BlankFragment())
+                    .addToBackStack(null)
+                    .commit();
+        }
     }
 
     @Override
@@ -242,8 +258,4 @@ public class MainActivity extends ActionBarActivity implements MainFragment.OnFr
         }
     }
 
-    @Override
-    public void onFragmentInteraction(Uri uri) {
-
-    }
 }
