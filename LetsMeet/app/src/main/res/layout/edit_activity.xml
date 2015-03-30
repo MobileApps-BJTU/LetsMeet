@@ -1,0 +1,114 @@
+<LinearLayout xmlns:android="http://schemas.android.com/apk/res/android"
+    xmlns:tools="http://schemas.android.com/tools" android:layout_width="match_parent"
+    android:layout_height="match_parent"
+    tools:context="com.example.walter.letsmeet.CreateActivityFragment"
+    android:orientation="vertical"
+    android:id = "@+id/EditNow">
+
+    <!-- TODO: Update blank fragment layout -->
+    <TextView android:layout_width="match_parent"
+        android:layout_height="70dp"
+        android:background="@color/material_blue_grey_800"
+        android:text="Edit an Activity"
+        android:textSize="35dp"/>
+
+    <LinearLayout
+        android:layout_width="fill_parent"
+        android:layout_height="wrap_content"
+        android:paddingTop="20dp">
+        <TextView
+            android:layout_width="wrap_content"
+            android:layout_height="wrap_content"
+            android:text="@string/ActivityName"
+            android:textSize="30dp"/>
+        <EditText android:layout_width="match_parent"
+            android:layout_height="wrap_content"
+            android:id = "@+id/edit_name"
+            android:enabled="false"
+            android:hint="Please Enter the topic "/>
+    </LinearLayout>
+
+    <LinearLayout
+        android:layout_width="fill_parent"
+        android:layout_height="wrap_content">
+        <TextView
+            android:layout_marginLeft="30dp"
+            android:layout_width="wrap_content"
+            android:layout_height="wrap_content"
+            android:text="@string/ActivityLocation"
+            android:textSize="30dp"/>
+        <EditText android:layout_width="match_parent"
+            android:layout_height="wrap_content"
+            android:id = "@+id/edit_location"
+            android:enabled="false"
+            android:hint="Enter the exact location"/>
+
+
+    </LinearLayout>
+
+    <LinearLayout
+        android:layout_width="fill_parent"
+        android:layout_height="wrap_content">
+        <TextView
+            android:layout_marginLeft="30dp"
+            android:layout_width="wrap_content"
+            android:layout_height="wrap_content"
+            android:text="@string/ActivityDate"
+            android:textSize="30dp"/>
+        <EditText android:layout_width="match_parent"
+            android:layout_height="wrap_content"
+            android:enabled="false"
+            android:id = "@+id/edit_date"
+            android:hint="Occurring Date"/>
+
+
+    </LinearLayout>
+    <LinearLayout
+        android:layout_width="fill_parent"
+        android:layout_height="wrap_content">
+        <TextView
+            android:layout_marginLeft="30dp"
+            android:layout_width="wrap_content"
+            android:layout_height="wrap_content"
+            android:text="@string/ActivityPeople"
+            android:textSize="30dp"/>
+        <EditText android:layout_width="match_parent"
+            android:layout_height="wrap_content"
+            android:id = "@+id/edit_number"
+            android:enabled="false"
+            android:hint="Number of participators"/>
+
+
+    </LinearLayout>
+    <RelativeLayout
+        android:layout_width="match_parent"
+        android:layout_height="wrap_content"
+        >
+        <Button android:layout_width="wrap_content"
+            android:layout_height="wrap_content"
+            android:layout_marginLeft="45dp"
+            android:layout_marginTop="15dp"
+            android:id="@+id/button_change"
+            android:text="Change"/>
+
+        <Button android:layout_width="wrap_content"
+            android:layout_height="wrap_content"
+            android:id="@+id/button_delete"
+            android:layout_marginRight="1dp"
+            android:layout_alignTop="@+id/button_change"
+            android:layout_toEndOf="@+id/button_change"
+            android:layout_marginStart="25dp"
+            android:text="Delete"/>
+
+        <Button android:layout_width="wrap_content"
+            android:layout_height="wrap_content"
+            android:id="@+id/button_ok"
+            android:layout_marginRight="1dp"
+            android:layout_alignTop="@+id/button_delete"
+            android:layout_toEndOf="@+id/button_delete"
+            android:layout_marginStart="25dp"
+            android:text="OK"/>
+    </RelativeLayout>
+
+
+</LinearLayout>

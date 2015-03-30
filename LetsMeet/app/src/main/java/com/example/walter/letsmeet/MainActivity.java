@@ -2,12 +2,10 @@ package com.example.walter.letsmeet;
 
 import android.app.AlertDialog;
 import android.content.SharedPreferences;
-import android.net.Uri;
-import android.support.v7.app.ActionBarActivity;
 import android.os.Bundle;
+import android.support.v7.app.ActionBarActivity;
 import android.view.Menu;
 import android.view.MenuItem;
-import android.widget.EditText;
 import android.widget.Toast;
 
 import java.util.ArrayList;
@@ -16,7 +14,7 @@ import java.util.Map;
 
 
 public class MainActivity extends ActionBarActivity implements MainFragment.OnFragmentInteractionListener,
-        CreateActivityFragment.OnFragmentInteractionListener{
+        CreateActivityFragment.OnFragmentInteractionListener,EditFragment.OnFragmentInteractionListener{
 
     private static final String ACTIVITY = "activity";
     private static final String NAME = "name";
@@ -177,7 +175,7 @@ public class MainActivity extends ActionBarActivity implements MainFragment.OnFr
                 .addToBackStack(null)
                 .commit();
     }
-    
+
     @Override
  public void onClickLetsMeetButton(String name,String date,String location,String number){
 
@@ -204,13 +202,14 @@ public class MainActivity extends ActionBarActivity implements MainFragment.OnFr
             .commit();
         }
    }
+
     public void onClickCancelCreateActivity(){
         onBackPressed();
     }
 
+
     @Override
     public void clickListItem(String str) {
-
         String key = "";
         for (String s:activities){
             if (activityNames.get(s).equals(str)){
@@ -219,21 +218,23 @@ public class MainActivity extends ActionBarActivity implements MainFragment.OnFr
         }
         savedAnActivity = getSharedPreferences(key,MODE_PRIVATE);
 
-        int type = savedAnActivity.getInt(TYPE,5);
 
-        if (type == 5){
+        int types = savedAnActivity.getInt(TYPE,5);
+
+        if (types == 5){
             Toast.makeText(this,"活动种类未知",Toast.LENGTH_LONG).show();
-        }else if (type == 0){
+        }else if (types == 0){
             getFragmentManager().beginTransaction()
                     .replace(R.id.fragment_holder,new BlankFragment())
                     .addToBackStack(null)
                     .commit();
-        }else if (type == 1){
+        }else if (types == 1){
             getFragmentManager().beginTransaction()
-                    .replace(R.id.fragment_holder,new BlankFragment())
+                    .replace(R.id.fragment_holder, new EditFragment().newInstance(savedAnActivity.getString(NAME, ""), savedAnActivity.getString(LOCATION, ""),
+                            savedAnActivity.getString(DATE, ""), savedAnActivity.getInt(NUMBER, 0)))
                     .addToBackStack(null)
                     .commit();
-        }else if (type == 2){
+        }else if (types == 2){
             getFragmentManager().beginTransaction()
                     .replace(R.id.fragment_holder,new BlankFragment())
                     .addToBackStack(null)
@@ -242,6 +243,7 @@ public class MainActivity extends ActionBarActivity implements MainFragment.OnFr
     }
 
     @Override
+
     public void onBackPressed(){
 
         if(getFragmentManager().getBackStackEntryCount() > 0){
@@ -251,4 +253,32 @@ public class MainActivity extends ActionBarActivity implements MainFragment.OnFr
         }
     }
 
+    @Override
+    public void clickOKButton(String name, String newName,String location, String date, int number) {
+        String key = "";
+        for (String s:activities){
+            if (activityNames.get(s).equals(name)){
+                key = s;
+            }
+        }
+        savedAnActivity = getSharedPreferences(key,MODE_PRIVATE);
+
+        editor = savedAnActivity.edit();
+
+        editor.putString(NAME,newName);
+        editor.putString(LOCATION,location);
+        editor.putString(DATE,date);
+        editor.putInt(NUMBER,number);
+        editor.putInt(TYPE,1);
+        editor.apply();
+
+        editor = savedActivities.edit();
+        editor.putString(key,newName);
+        editor.apply();
+
+        getFragmentManager().beginTransaction()
+                .replace(R.id.fragment_holder, new MainFragment(getData()))
+                .addToBackStack(null)
+                .commit();
+    }
 }
