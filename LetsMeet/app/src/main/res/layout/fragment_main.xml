@@ -1,11 +1,11 @@
 <FrameLayout xmlns:android="http://schemas.android.com/apk/res/android"
     xmlns:tools="http://schemas.android.com/tools" android:layout_width="match_parent"
-    android:layout_height="match_parent" tools:context="com.example.walter.letsmeet.MainFragment">
+    android:layout_height="match_parent" tools:context="com.example.walter.letsmeet.MainFragment"
+    android:background="@mipmap/background">
 
     <RelativeLayout
         android:layout_width="fill_parent"
         android:layout_height="fill_parent">
-
 
         <ImageView
             android:layout_width="fill_parent"
@@ -15,7 +15,7 @@
         <GridLayout
             android:layout_width="fill_parent"
             android:layout_height="50dp"
-
+            android:layout_below="@+id/imageView"
             android:rowCount="1"
             android:columnCount="3"
             android:layout_alignParentStart="true"
@@ -25,19 +25,22 @@
                 android:layout_width="130dp"
                 android:layout_height="wrap_content"
                 android:text="@string/hotButton"
-                android:id="@+id/HotButton" />
+                android:id="@+id/HotButton"
+                android:background="@mipmap/heart1"/>
 
             <Button
                 android:layout_width="130dp"
                 android:layout_height="wrap_content"
                 android:text="@string/newButton"
-                android:id="@+id/NewButton" />
+                android:id="@+id/NewButton"
+                android:background="@mipmap/heart2"/>
 
             <Button
                 android:layout_width="130dp"
                 android:layout_height="wrap_content"
                 android:text="@string/nearbyButton"
-                android:id="@+id/NearByButton" />
+                android:id="@+id/NearByButton"
+                android:background="@mipmap/heart3"/>
         </GridLayout>
 
         <ListView
@@ -45,7 +48,8 @@
             android:layout_height="270dp"
             android:id="@android:id/list"
             android:layout_below="@+id/gridLayout"
-            android:layout_centerHorizontal="true" />
+            android:layout_centerHorizontal="true"
+            android:background="@drawable/view_border"/>
 
         <GridLayout
             android:layout_width="fill_parent"
@@ -59,19 +63,22 @@
                 android:layout_width="130dp"
                 android:layout_height="wrap_content"
                 android:text="@string/MEButton"
-                android:id="@+id/MEButton" />
+                android:id="@+id/MEButton"
+                android:background="@mipmap/icon_logo"/>
 
             <Button
                 android:layout_width="130dp"
                 android:layout_height="wrap_content"
                 android:text="@string/createButton"
-                android:id="@+id/CreateButton" />
+                android:id="@+id/CreateButton"
+                android:background="@mipmap/write"/>
 
             <Button
                 android:layout_width="130dp"
                 android:layout_height="wrap_content"
                 android:text="@string/SettingButton"
-                android:id="@+id/SettingButton" />
+                android:id="@+id/SettingButton"
+                android:background="@mipmap/settings"/>
         </GridLayout>
 
     </RelativeLayout>
