@@ -21,6 +21,7 @@ public class MainActivity extends ActionBarActivity implements MainFragment.OnFr
     private static final String NAME = "name";
     private static final String LOCATION = "location";
     private static final String DATE = "date";
+    private static final String EXIST = "exist";
     private static final String NUMBER = "number";
     private static final String TYPE = "type";
 
@@ -63,7 +64,13 @@ public class MainActivity extends ActionBarActivity implements MainFragment.OnFr
             map.put(NAME,savedAnActivity.getString(NAME,""));
             map.put(LOCATION,savedAnActivity.getString(LOCATION,"地点待定"));
             map.put(DATE,savedAnActivity.getString(DATE,"时间待定"));
-            map.put(NUMBER,savedAnActivity.getInt(NUMBER, 2));
+
+            int j,k;
+            String str;
+            j = savedAnActivity.getInt(EXIST,1);
+            k = savedAnActivity.getInt(NUMBER, 2);
+            str = String.valueOf(j) + "/" + String.valueOf(k);
+            map.put(NUMBER,str);
 
             int judge = savedAnActivity.getInt(TYPE,5);
             if(judge == 0){
@@ -76,7 +83,6 @@ public class MainActivity extends ActionBarActivity implements MainFragment.OnFr
                 Toast.makeText(this,"该条类型未定，不予显示",Toast.LENGTH_LONG).show();
                 continue;
             }
-
             list.add(map);
         }
 
@@ -103,8 +109,9 @@ public class MainActivity extends ActionBarActivity implements MainFragment.OnFr
             editor.putString(NAME, str);
             editor.putString(LOCATION, "西直门凯德mall");
             editor.putString(DATE, "四月3号");
+            editor.putInt(EXIST,3);
             editor.putInt(NUMBER, 5);
-            editor.putInt(TYPE, 1);
+            editor.putInt(TYPE, 0);
 
             if (editor.commit()) {
                 Toast.makeText(this, "数据写入成功", Toast.LENGTH_LONG).show();
@@ -135,6 +142,7 @@ public class MainActivity extends ActionBarActivity implements MainFragment.OnFr
                 editor.putString(LOCATION, location);
                 editor.putString(DATE, date);
                 editor.putInt(NUMBER, number);
+                editor.putInt(EXIST,1);
                 editor.putInt(TYPE, 1);
 
                 if (editor.commit()) {
