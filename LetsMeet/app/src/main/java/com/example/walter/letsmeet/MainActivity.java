@@ -1,6 +1,7 @@
 package com.example.walter.letsmeet;
 
 import android.app.AlertDialog;
+import android.content.DialogInterface;
 import android.content.SharedPreferences;
 import android.os.Bundle;
 import android.support.v7.app.ActionBarActivity;
@@ -15,7 +16,7 @@ import java.util.Map;
 
 
 public class MainActivity extends ActionBarActivity implements MainFragment.OnFragmentInteractionListener,
-        CreateActivityFragment.OnFragmentInteractionListener,EditFragment.OnFragmentInteractionListener{
+        CreateActivityFragment.OnFragmentInteractionListener,EditFragment.OnFragmentInteractionListener,JoinActivityFragment.OnFragmentInteractionListener{
 
     private static final String ACTIVITY = "activity";
     private static final String NAME = "name";
@@ -205,10 +206,10 @@ public class MainActivity extends ActionBarActivity implements MainFragment.OnFr
         else {
 
             setActivityData(name, date,location,Integer.valueOf(number));
+            getFragmentManager().popBackStack();
             getFragmentManager().beginTransaction()
                     .replace(R.id.fragment_holder, new MainFragment(getData()))
-                    .addToBackStack(null)
-            .commit();
+                    .commit();
         }
    }
 
@@ -227,25 +228,23 @@ public class MainActivity extends ActionBarActivity implements MainFragment.OnFr
         }
         savedAnActivity = getSharedPreferences(key,MODE_PRIVATE);
 
+        String actiName = savedAnActivity.getString(NAME, "");
+        String location = savedAnActivity.getString(LOCATION, "");
+        String date = savedAnActivity.getString(DATE, "");
+        int exist = savedAnActivity.getInt(EXIST,1);
+        int number = savedAnActivity.getInt(NUMBER, 2);
+        int type = savedAnActivity.getInt(TYPE,5);
 
-        int types = savedAnActivity.getInt(TYPE,5);
-
-        if (types == 5){
+        if (type == 5){
             Toast.makeText(this,"活动种类未知",Toast.LENGTH_LONG).show();
-        }else if (types == 0){
+        }else if (type == 0 || type == 2){
             getFragmentManager().beginTransaction()
-                    .replace(R.id.fragment_holder,new BlankFragment())
+                    .replace(R.id.fragment_holder, new JoinActivityFragment().newInstance(actiName,location,date,exist,number,type))
                     .addToBackStack(null)
                     .commit();
-        }else if (types == 1){
+        }else if (type == 1){
             getFragmentManager().beginTransaction()
-                    .replace(R.id.fragment_holder, new EditFragment().newInstance(savedAnActivity.getString(NAME, ""), savedAnActivity.getString(LOCATION, ""),
-                            savedAnActivity.getString(DATE, ""), savedAnActivity.getInt(NUMBER, 0)))
-                    .addToBackStack(null)
-                    .commit();
-        }else if (types == 2){
-            getFragmentManager().beginTransaction()
-                    .replace(R.id.fragment_holder,new BlankFragment())
+                    .replace(R.id.fragment_holder, new EditFragment().newInstance(actiName,location,date,number))
                     .addToBackStack(null)
                     .commit();
         }
@@ -284,9 +283,11 @@ public class MainActivity extends ActionBarActivity implements MainFragment.OnFr
         editor.putString(key, newName);
         editor.apply();
 
+        activityNames.put(key,newName);
+
+        getFragmentManager().popBackStack();
         getFragmentManager().beginTransaction()
                 .replace(R.id.fragment_holder, new MainFragment(getData()))
-                .addToBackStack(null)
                 .commit();
     }
 
@@ -311,9 +312,55 @@ public class MainActivity extends ActionBarActivity implements MainFragment.OnFr
 
         activities.remove(key);
         activityNames.remove(key);
+
+        getFragmentManager().popBackStack();
         getFragmentManager().beginTransaction()
                 .replace(R.id.fragment_holder, new MainFragment(getData()))
-                .addToBackStack(null)
+                .commit();
+    }
+
+    @Override
+    public void clickJoinButton(String name,int exist) {
+
+        String key = "";
+        for (String s:activities){
+            if (activityNames.get(s).equals(name)){
+                key = s;
+            }
+        }
+        savedAnActivity = getSharedPreferences(key,MODE_PRIVATE);
+        editor = savedAnActivity.edit();
+        editor.putInt(EXIST,exist+1);
+        editor.putInt(TYPE,2);
+        editor.apply();
+
+        getFragmentManager().popBackStack();
+        getFragmentManager().beginTransaction()
+                .replace(R.id.fragment_holder, new MainFragment(getData()))
+                .commit();
+
+    }
+
+    @Override
+    public void clickCancelButton(String name,int exist) {
+
+        String key = "";
+        for (String s:activities){
+            if (activityNames.get(s).equals(name)){
+                key = s;
+            }
+        }
+        savedAnActivity = getSharedPreferences(key,MODE_PRIVATE);
+
+        savedAnActivity = getSharedPreferences(key,MODE_PRIVATE);
+        editor = savedAnActivity.edit();
+        editor.putInt(EXIST,exist-1);
+        editor.putInt(TYPE,0);
+        editor.apply();
+
+        getFragmentManager().popBackStack();
+        getFragmentManager().beginTransaction()
+                .replace(R.id.fragment_holder, new MainFragment(getData()))
                 .commit();
     }
 }

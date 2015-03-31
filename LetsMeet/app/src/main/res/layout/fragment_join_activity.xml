@@ -3,15 +3,14 @@
     android:layout_height="match_parent"
     tools:context="com.example.walter.letsmeet.CreateActivityFragment"
     android:orientation="vertical"
-    android:id = "@+id/letsMeet"
-    android:background="@mipmap/background" >
+    android:background="@mipmap/background">
 
     <!-- TODO: Update blank fragment layout -->
     <TextView
         android:layout_width="match_parent"
         android:layout_height="70dp"
         android:background="@mipmap/header"
-        android:text="@string/header_create_activity"
+        android:text="@string/header_join_activity"
         android:gravity="center"
         android:textSize="35dp"/>
 
@@ -22,6 +21,7 @@
         android:paddingTop="60dp"
         android:rowCount="5"
         android:columnCount="3">
+
         <TextView
             android:layout_width="wrap_content"
             android:layout_height="wrap_content"
@@ -37,6 +37,7 @@
             android:layout_column="0"
             android:layout_gravity="right"
             android:gravity="center"
+            android:enabled="false"
             android:id = "@+id/edit_name"
             android:hint="@string/hint_enter_name"
             android:background="@mipmap/box"/>
@@ -57,6 +58,7 @@
             android:layout_column="1"
             android:layout_columnSpan="2"
             android:id = "@+id/edit_location"
+            android:enabled="false"
             android:gravity="center"
             android:hint="@string/hint_enter_location"
             android:background="@mipmap/box"
@@ -78,6 +80,7 @@
             android:layout_row="3"
             android:layout_column="1"
             android:layout_columnSpan="2"
+            android:enabled="false"
             android:gravity="center"
             android:id = "@+id/edit_date"
             android:hint="@string/hint_enter_date"
@@ -100,6 +103,7 @@
             android:layout_row="4"
             android:layout_column="1"
             android:layout_columnSpan="2"
+            android:enabled="false"
             android:gravity="center"
             android:id = "@+id/edit_number"
             android:hint="@string/hint_enter_number"
@@ -107,30 +111,31 @@
             android:background="@mipmap/box"/>
 
     </GridLayout>
+
     <RelativeLayout
         android:layout_width="wrap_content"
         android:layout_height="wrap_content"
         android:layout_gravity="center"
         >
-    <Button
-        android:layout_width="100dp"
-        android:layout_height="50dp"
-        android:layout_marginLeft="45dp"
-        android:layout_marginTop="65dp"
-        android:id="@+id/button_create"
-        android:text="@string/LetsMeet"
-        android:background="@mipmap/button2" />
-
-        <Button android:layout_width="100dp"
+        <Button
+            android:layout_width="100dp"
             android:layout_height="50dp"
-            android:id="@+id/button_back"
-            android:layout_marginRight="45dp"
-            android:layout_alignTop="@+id/button_create"
-            android:layout_toEndOf="@+id/button_create"
-            android:layout_marginStart="85dp"
-            android:text="@string/Cancel_create_activity"
+            android:layout_marginLeft="45dp"
+            android:layout_marginTop="65dp"
+            android:id="@+id/button_join"
+            android:text="@string/joinButton"
             android:background="@mipmap/button2" />
 
+        <Button
+            android:layout_width="100dp"
+            android:layout_height="50dp"
+            android:id="@+id/button_cancel"
+            android:layout_marginRight="45dp"
+            android:layout_alignTop="@+id/button_join"
+            android:layout_toEndOf="@+id/button_join"
+            android:layout_marginStart="85dp"
+            android:text="@string/cancelButton"
+            android:background="@mipmap/button2" />
     </RelativeLayout>
 
 

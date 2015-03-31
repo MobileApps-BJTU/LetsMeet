@@ -1,7 +1,6 @@
 package com.example.walter.letsmeet;
 
 import android.app.Activity;
-import android.net.Uri;
 import android.os.Bundle;
 import android.app.Fragment;
 import android.view.LayoutInflater;
@@ -44,8 +43,8 @@ public class CreateActivityFragment extends Fragment {
 
         Button letsMeet = (Button)myView.findViewById(R.id.button_create);
         letsMeet.setOnClickListener(letsMeetButtonListener);
-        Button cancel = (Button)myView.findViewById(R.id.button_cancel);
-        cancel.setOnClickListener(cancelButtonListener);
+        Button back = (Button)myView.findViewById(R.id.button_back);
+        back.setOnClickListener(backButtonListener);
 
         return myView;
     }
@@ -82,7 +81,7 @@ public class CreateActivityFragment extends Fragment {
         }
     };
 
-    public View.OnClickListener cancelButtonListener = new View.OnClickListener(){
+    public View.OnClickListener backButtonListener = new View.OnClickListener(){
 
         @Override
         public void onClick(View v) {

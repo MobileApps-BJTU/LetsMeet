@@ -1,7 +1,9 @@
 package com.example.walter.letsmeet;
 
 import android.app.Activity;
+import android.app.AlertDialog;
 import android.app.Fragment;
+import android.content.DialogInterface;
 import android.os.Bundle;
 import android.view.LayoutInflater;
 import android.view.View;
@@ -73,7 +75,7 @@ public class EditFragment extends Fragment {
 
         myTextView1 = (EditText) myView.findViewById(R.id.edit_name);
         myTextView2 = (EditText) myView.findViewById(R.id.edit_location);
-         myTextView3 = (EditText) myView.findViewById(R.id.edit_date);
+        myTextView3 = (EditText) myView.findViewById(R.id.edit_date);
         myTextView4 = (EditText) myView.findViewById(R.id.edit_number);
 
         myTextView1.setText(name);
@@ -87,6 +89,7 @@ public class EditFragment extends Fragment {
         delete.setOnClickListener(deleteButtonListener);
         ok = (Button)myView.findViewById(R.id.button_ok);
         ok.setOnClickListener(OKButtonListener);
+        ok.setClickable(false);
 
         return myView;
     }
@@ -109,9 +112,32 @@ public class EditFragment extends Fragment {
         @Override
         public void onClick(View v) {
 
-            if (mListener != null) {
-                mListener.clickDeleteButton(name);
-            }
+            AlertDialog.Builder confirmBuilder = new AlertDialog.Builder(getActivity());
+
+            confirmBuilder.setMessage(
+                    getString(R.string.confirmMessage));
+
+            confirmBuilder.setNegativeButton( getString(R.string.cancel),
+                    new DialogInterface.OnClickListener()
+                    {
+                        public void onClick(DialogInterface dialog, int id)
+                        {
+                            dialog.cancel();
+                        }
+                    }
+            );
+            confirmBuilder.setPositiveButton(getString(R.string.deleteButton),
+                    new DialogInterface.OnClickListener()
+                    {
+                        public void onClick(DialogInterface dialog, int id)
+                        {
+                            if (mListener != null) {
+                                mListener.clickDeleteButton(name);
+                            }
+                        }
+                    }
+            );
+            confirmBuilder.create().show();
         }
     };
 
