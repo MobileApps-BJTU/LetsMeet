@@ -3,111 +3,151 @@
     android:layout_height="match_parent"
     tools:context="com.example.walter.letsmeet.CreateActivityFragment"
     android:orientation="vertical"
-    android:id = "@+id/EditNow">
+    android:id = "@+id/EditNow"
+    android:background="@mipmap/background">
 
     <!-- TODO: Update blank fragment layout -->
-    <TextView android:layout_width="match_parent"
+    <TextView
+        android:layout_width="match_parent"
         android:layout_height="70dp"
-        android:background="@color/material_blue_grey_800"
-        android:text="Edit an Activity"
+        android:background="@mipmap/header"
+        android:text="@string/header_edit_activity"
+        android:gravity="center"
         android:textSize="35dp"/>
 
-    <LinearLayout
-        android:layout_width="fill_parent"
+    <GridLayout
+        android:layout_gravity="center"
+        android:layout_width="wrap_content"
         android:layout_height="wrap_content"
-        android:paddingTop="20dp">
-        <TextView
-            android:layout_width="wrap_content"
-            android:layout_height="wrap_content"
-            android:text="@string/ActivityName"
-            android:textSize="30dp"/>
-        <EditText android:layout_width="match_parent"
-            android:layout_height="wrap_content"
-            android:id = "@+id/edit_name"
-            android:enabled="false"
-            android:hint="Please Enter the topic "/>
-    </LinearLayout>
+        android:paddingTop="60dp"
+        android:rowCount="5"
+        android:columnCount="3">
 
-    <LinearLayout
-        android:layout_width="fill_parent"
-        android:layout_height="wrap_content">
         <TextView
-            android:layout_marginLeft="30dp"
             android:layout_width="wrap_content"
             android:layout_height="wrap_content"
-            android:text="@string/ActivityLocation"
-            android:textSize="30dp"/>
-        <EditText android:layout_width="match_parent"
+            android:layout_columnSpan="3"
+            android:text="@string/ActivityName"
+            android:layout_row="0"
+            android:textSize="30dp" />
+        <EditText
+            android:layout_width="wrap_content"
             android:layout_height="wrap_content"
+            android:layout_columnSpan="3"
+            android:layout_row="1"
+            android:layout_column="0"
+            android:layout_gravity="right"
+            android:gravity="center"
+            android:enabled="false"
+            android:id = "@+id/edit_name"
+            android:hint="@string/hint_enter_name"
+            android:background="@mipmap/box"/>
+
+        <TextView
+            android:layout_width="wrap_content"
+            android:layout_height="wrap_content"
+            android:layout_row="2"
+            android:layout_column="0"
+            android:text="@string/ActivityLocation"
+            android:textSize="30dp"
+            android:layout_marginTop="10dp"
+            />
+        <EditText
+            android:layout_width="wrap_content"
+            android:layout_height="wrap_content"
+            android:layout_row="2"
+            android:layout_column="1"
+            android:layout_columnSpan="2"
             android:id = "@+id/edit_location"
             android:enabled="false"
-            android:hint="Enter the exact location"/>
+            android:gravity="center"
+            android:hint="@string/hint_enter_location"
+            android:background="@mipmap/box"
+            android:layout_marginTop="10dp"
+            />
 
-
-    </LinearLayout>
-
-    <LinearLayout
-        android:layout_width="fill_parent"
-        android:layout_height="wrap_content">
         <TextView
-            android:layout_marginLeft="30dp"
             android:layout_width="wrap_content"
             android:layout_height="wrap_content"
+            android:layout_row="3"
+            android:layout_column="0"
             android:text="@string/ActivityDate"
-            android:textSize="30dp"/>
-        <EditText android:layout_width="match_parent"
-            android:layout_height="wrap_content"
-            android:enabled="false"
-            android:id = "@+id/edit_date"
-            android:hint="Occurring Date"/>
-
-
-    </LinearLayout>
-    <LinearLayout
-        android:layout_width="fill_parent"
-        android:layout_height="wrap_content">
-        <TextView
-            android:layout_marginLeft="30dp"
+            android:textSize="30dp"
+            android:layout_marginTop="10dp"
+            />
+        <EditText
             android:layout_width="wrap_content"
             android:layout_height="wrap_content"
-            android:text="@string/ActivityPeople"
-            android:textSize="30dp"/>
-        <EditText android:layout_width="match_parent"
-            android:layout_height="wrap_content"
-            android:id = "@+id/edit_number"
+            android:layout_row="3"
+            android:layout_column="1"
+            android:layout_columnSpan="2"
             android:enabled="false"
-            android:hint="Number of participators"/>
+            android:gravity="center"
+            android:id = "@+id/edit_date"
+            android:hint="@string/hint_enter_date"
+            android:background="@mipmap/box"
+            android:layout_marginTop="10dp"
+            />
 
+        <TextView
+            android:layout_width="wrap_content"
+            android:layout_height="wrap_content"
+            android:layout_row="4"
+            android:layout_column="0"
+            android:text="@string/ActivityPeople"
+            android:textSize="30dp"
+            android:layout_marginTop="10dp"
+            />
+        <EditText
+            android:layout_width="match_parent"
+            android:layout_height="wrap_content"
+            android:layout_row="4"
+            android:layout_column="1"
+            android:layout_columnSpan="2"
+            android:enabled="false"
+            android:gravity="center"
+            android:id = "@+id/edit_number"
+            android:hint="@string/hint_enter_number"
+            android:layout_marginTop="10dp"
+            android:background="@mipmap/box"/>
 
-    </LinearLayout>
+    </GridLayout>
     <RelativeLayout
-        android:layout_width="match_parent"
+        android:layout_width="wrap_content"
         android:layout_height="wrap_content"
+        android:layout_gravity="center"
         >
-        <Button android:layout_width="wrap_content"
-            android:layout_height="wrap_content"
+        <Button
+            android:layout_width="80dp"
+            android:layout_height="40dp"
             android:layout_marginLeft="45dp"
-            android:layout_marginTop="15dp"
+            android:layout_marginTop="65dp"
             android:id="@+id/button_change"
-            android:text="Change"/>
+            android:text="@string/changeButton"
+            android:background="@mipmap/button2"/>
 
-        <Button android:layout_width="wrap_content"
-            android:layout_height="wrap_content"
+        <Button
+            android:layout_width="80dp"
+            android:layout_height="40dp"
             android:id="@+id/button_delete"
             android:layout_marginRight="1dp"
             android:layout_alignTop="@+id/button_change"
             android:layout_toEndOf="@+id/button_change"
             android:layout_marginStart="25dp"
-            android:text="Delete"/>
+            android:text="@string/deleteButton"
+            android:background="@mipmap/button2"/>
 
-        <Button android:layout_width="wrap_content"
-            android:layout_height="wrap_content"
+        <Button
+            android:layout_width="60dp"
+            android:layout_height="40dp"
             android:id="@+id/button_ok"
-            android:layout_marginRight="1dp"
+            android:layout_marginRight="45dp"
             android:layout_alignTop="@+id/button_delete"
             android:layout_toEndOf="@+id/button_delete"
             android:layout_marginStart="25dp"
-            android:text="OK"/>
+            android:clickable="false"
+            android:text="@string/OKButton"
+            android:background="@mipmap/button2"/>
     </RelativeLayout>
 
 

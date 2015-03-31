@@ -2,7 +2,7 @@
     <string name="app_name">LetsMeet</string>
 
     <string name="header_create_activity">Create an Activity</string>
-
+    <string name="header_edit_activity">My Activity</string>
     <string name="action_settings">Settings</string>
     <string name="hotButton">HOT</string>
     <string name="newButton">NEW</string>
@@ -10,6 +10,12 @@
     <string name="MEButton">ME</string>
     <string name="createButton">create</string>
     <string name="SettingButton">Settings</string>
+
+    <string name="changeButton">Change</string>
+    <string name="deleteButton">Delete</string>
+    <string name="OKButton">OK</string>
+    <string name="joinButton">Join</string>
+    <string name="cancelButton">Cancel</string>
 
     <string name="ActivityName">Activity Name:</string>
     <string name="ActivityDate">Date:</string>
@@ -24,10 +30,9 @@
     <string name="hint_enter_date">   Occurring date</string>
     <string name="hint_enter_number">   Number of participators</string>
 
-
     <string name="missingMessage">Please enter an activity name.</string>
     <string name="OK">OK</string>
 
-<!-- TODO: Remove or change this placeholder text -->
+    <!-- TODO: Remove or change this placeholder text -->
     <string name="hello_blank_fragment">Hello blank fragment</string>
 </resources>

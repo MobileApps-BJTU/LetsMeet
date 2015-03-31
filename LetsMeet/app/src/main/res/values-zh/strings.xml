@@ -1,9 +1,10 @@
-
+<?xml version="1.0" encoding="utf-8"?>
 <resources>
 
     <string name="app_name">揪团！</string>
 
     <string name="header_create_activity">创建活动</string>
+    <string name="header_edit_activity">我的活动</string>
     <string name="action_settings">设置</string>
     <string name="hotButton">热门</string>
     <string name="newButton">最新</string>
@@ -11,6 +12,12 @@
     <string name="MEButton">关于我</string>
     <string name="createButton">创建</string>
     <string name="SettingButton">设置</string>
+
+    <string name="changeButton">修改</string>
+    <string name="deleteButton">删除</string>
+    <string name="OKButton">确定</string>
+    <string name="joinButton">加入活动</string>
+    <string name="cancelButton">取消活动</string>
 
     <string name="ActivityName">活动名称:</string>
     <string name="ActivityDate">日期:</string>
@@ -23,13 +30,12 @@
     <string name="hint_enter_name">请输入活动主题</string>
     <string name="hint_enter_location">请输入确切地址</string>
     <string name="hint_enter_date"> 请输入确切时间</string>
-    <string name="hint_enter_number">请输入参与人数</string>
+    <string name="hint_enter_number">请输入参与人数</string>v
 
     <string name="missingMessage">请输入活动相关信息！</string>
     <string name="OK">好</string>
 
     <!-- TODO: Remove or change this placeholder text -->
-    <string name="hello_blank_fragment">Hello blank fragment</string>
-
+    <string name="hello_blank_fragment">你好</string>
 
 </resources>

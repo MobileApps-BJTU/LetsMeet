@@ -27,15 +27,14 @@ public class EditFragment extends Fragment {
     private int number;
 
     private OnFragmentInteractionListener mListener;
-    private EditText activityNameText;
-    private EditText activityLocationText;
-    private EditText activityDateText;
-    private EditText activityNumberText;
     private EditText myTextView1;
     private EditText myTextView2;
     private EditText myTextView3;
     private EditText myTextView4;
-    private File file;
+    private Button change;
+    private Button delete;
+    private Button ok;
+
 
     public static EditFragment newInstance(String name, String location, String date, int number) {
         EditFragment fragment = new EditFragment();
@@ -82,11 +81,11 @@ public class EditFragment extends Fragment {
         myTextView3.setText(date);
         myTextView4.setText(String.valueOf(number));
 
-        Button change = (Button)myView.findViewById(R.id.button_change);
+        change = (Button)myView.findViewById(R.id.button_change);
         change.setOnClickListener(changeButtonListener);
-        Button delete = (Button)myView.findViewById(R.id.button_delete);
+        delete = (Button)myView.findViewById(R.id.button_delete);
         delete.setOnClickListener(deleteButtonListener);
-        Button ok = (Button)myView.findViewById(R.id.button_ok);
+        ok = (Button)myView.findViewById(R.id.button_ok);
         ok.setOnClickListener(OKButtonListener);
 
         return myView;
@@ -95,10 +94,13 @@ public class EditFragment extends Fragment {
     public View.OnClickListener changeButtonListener = new View.OnClickListener() {
         @Override
         public void onClick(View v) {
+
             myTextView1.setEnabled(true);
             myTextView2.setEnabled(true);
             myTextView3.setEnabled(true);
             myTextView4.setEnabled(true);
+            change.setClickable(false);
+            ok.setClickable(true);
 
         }
     };
@@ -149,7 +151,7 @@ public class EditFragment extends Fragment {
     public interface OnFragmentInteractionListener {
         // TODO: Update argument type and name
 
-        public void clickOKButton(String oldname,String newName,String location,String date,int number);
+        public void clickOKButton(String oldName,String newName,String location,String date,int number);
         public void clickDeleteButton(String name);
     }
 }

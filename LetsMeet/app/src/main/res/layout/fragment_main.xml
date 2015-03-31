@@ -1,7 +1,9 @@
 <FrameLayout xmlns:android="http://schemas.android.com/apk/res/android"
-    xmlns:tools="http://schemas.android.com/tools" android:layout_width="match_parent"
-    android:layout_height="match_parent" tools:context="com.example.walter.letsmeet.MainFragment"
-    android:background="@mipmap/background">
+    xmlns:tools="http://schemas.android.com/tools"
+    android:layout_width="match_parent"
+    android:layout_height="match_parent"
+    android:background="@mipmap/background"
+    tools:context="com.example.walter.letsmeet.MainFragment">
 
     <RelativeLayout
         android:layout_width="fill_parent"
@@ -41,15 +43,16 @@
                 android:text="@string/nearbyButton"
                 android:id="@+id/NearByButton"
                 android:background="@mipmap/heart3"/>
+
         </GridLayout>
 
         <ListView
             android:layout_width="fill_parent"
-            android:layout_height="270dp"
+            android:layout_height="340dp"
             android:id="@android:id/list"
             android:layout_below="@+id/gridLayout"
             android:layout_centerHorizontal="true"
-            android:background="@drawable/view_border"/>
+            android:background="@drawable/view_border" />
 
         <GridLayout
             android:layout_width="fill_parent"
@@ -79,6 +82,7 @@
                 android:text="@string/SettingButton"
                 android:id="@+id/SettingButton"
                 android:background="@mipmap/settings"/>
+
         </GridLayout>
 
     </RelativeLayout>
