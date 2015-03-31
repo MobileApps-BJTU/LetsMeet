@@ -279,6 +279,8 @@ public class MainActivity extends ActionBarActivity implements MainFragment.OnFr
         editor.putInt(NUMBER,number);
         editor.putInt(TYPE,1);
 
+        editor.commit();
+
         editor = savedActivities.edit();
         editor.putString(key, newName);
         editor.apply();
