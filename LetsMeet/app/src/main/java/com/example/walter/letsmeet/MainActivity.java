@@ -8,6 +8,7 @@ import android.view.Menu;
 import android.view.MenuItem;
 import android.widget.Toast;
 
+import java.io.File;
 import java.util.ArrayList;
 import java.util.HashMap;
 import java.util.Map;
@@ -270,12 +271,38 @@ public class MainActivity extends ActionBarActivity implements MainFragment.OnFr
         editor.putString(DATE,date);
         editor.putInt(NUMBER,number);
         editor.putInt(TYPE,1);
-        editor.apply();
 
         editor = savedActivities.edit();
-        editor.putString(key,newName);
+        editor.putString(key, newName);
         editor.apply();
 
+        getFragmentManager().beginTransaction()
+                .replace(R.id.fragment_holder, new MainFragment(getData()))
+                .addToBackStack(null)
+                .commit();
+    }
+
+    @Override
+    public void clickDeleteButton(String name) {
+
+        String key = "";
+        for (String s:activities){
+            if (activityNames.get(s).equals(name)){
+                key = s;
+            }
+        }
+        File file= new File("/data/data/"+getBaseContext().getPackageName().toString()+"/shared_prefs",key+".xml");
+
+        if(file.exists()){
+            file.delete();
+        }
+
+        editor = savedActivities.edit();
+        editor.remove(key);
+        editor.apply();
+
+        activities.remove(key);
+        activityNames.remove(key);
         getFragmentManager().beginTransaction()
                 .replace(R.id.fragment_holder, new MainFragment(getData()))
                 .addToBackStack(null)

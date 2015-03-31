@@ -9,6 +9,8 @@ import android.view.ViewGroup;
 import android.widget.Button;
 import android.widget.EditText;
 
+import java.io.File;
+
 
 /**
  * A simple {@link Fragment} subclass.
@@ -33,6 +35,7 @@ public class EditFragment extends Fragment {
     private EditText myTextView2;
     private EditText myTextView3;
     private EditText myTextView4;
+    private File file;
 
     public static EditFragment newInstance(String name, String location, String date, int number) {
         EditFragment fragment = new EditFragment();
@@ -69,7 +72,7 @@ public class EditFragment extends Fragment {
                              Bundle savedInstanceState) {
         View myView =  inflater.inflate(R.layout.edit_activity, container, false);
 
-         myTextView1 = (EditText) myView.findViewById(R.id.edit_name);
+        myTextView1 = (EditText) myView.findViewById(R.id.edit_name);
         myTextView2 = (EditText) myView.findViewById(R.id.edit_location);
          myTextView3 = (EditText) myView.findViewById(R.id.edit_date);
         myTextView4 = (EditText) myView.findViewById(R.id.edit_number);
@@ -104,6 +107,9 @@ public class EditFragment extends Fragment {
         @Override
         public void onClick(View v) {
 
+            if (mListener != null) {
+                mListener.clickDeleteButton(name);
+            }
         }
     };
 
@@ -119,7 +125,7 @@ public class EditFragment extends Fragment {
             number = Integer.valueOf(myTextView4.getText().toString());
 
             if (mListener!=null){
-                mListener.clickOKButton(name,newName,location,date,number);
+                mListener.clickOKButton(name, newName, location, date, number);
             }
         }
     };
@@ -144,5 +150,6 @@ public class EditFragment extends Fragment {
         // TODO: Update argument type and name
 
         public void clickOKButton(String oldname,String newName,String location,String date,int number);
+        public void clickDeleteButton(String name);
     }
 }

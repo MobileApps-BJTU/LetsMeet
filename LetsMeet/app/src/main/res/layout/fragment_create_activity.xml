@@ -91,12 +91,12 @@
         android:layout_height="wrap_content"
         android:layout_gravity="center"
         >
-    <Button android:layout_width="wrap_content"
-        android:layout_height="wrap_content"
-        android:layout_marginLeft="45dp"
-        android:layout_marginTop="65dp"
-        android:id="@+id/button_create"
-        android:text="@string/LetsMeet"/>
+        <Button android:layout_width="wrap_content"
+            android:layout_height="wrap_content"
+            android:layout_marginLeft="45dp"
+            android:layout_marginTop="65dp"
+            android:id="@+id/button_create"
+            android:text="@string/LetsMeet"/>
 
         <Button android:layout_width="wrap_content"
             android:layout_height="wrap_content"

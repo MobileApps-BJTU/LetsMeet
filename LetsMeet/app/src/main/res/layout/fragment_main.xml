@@ -6,6 +6,7 @@
         android:layout_width="fill_parent"
         android:layout_height="fill_parent">
 
+
         <ImageView
             android:layout_width="fill_parent"
             android:layout_height="120dp"
@@ -14,7 +15,7 @@
         <GridLayout
             android:layout_width="fill_parent"
             android:layout_height="50dp"
-            android:layout_below="@+id/imageView"
+
             android:rowCount="1"
             android:columnCount="3"
             android:layout_alignParentStart="true"
