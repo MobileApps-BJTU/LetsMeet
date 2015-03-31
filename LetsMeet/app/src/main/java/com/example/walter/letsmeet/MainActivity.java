@@ -335,6 +335,8 @@ public class MainActivity extends ActionBarActivity implements MainFragment.OnFr
         editor.putInt(EXIST,exist+1);
         editor.putInt(TYPE,2);
         editor.apply();
+        Toast.makeText(this,"您已加入该活动",Toast.LENGTH_LONG).show();
+
 
         getFragmentManager().popBackStack();
         getFragmentManager().beginTransaction()
